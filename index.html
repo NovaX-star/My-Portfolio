@@ -1,36 +1,176 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>salik ridwan</title>
-    <style>
-        body, html {
-            margin: 0;
-            padding: 0;
-            width: 100%;
-            height: 100%;
-            overflow-x: hidden; 
-        }
-        .image-container {
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-        }
-        .image-container img {
-            width: 100%;
-            height: 100vh; 
-            object-fit: cover;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Salik | Embedded Systems Engineer</title>
+  <!-- Google Font: Open Sans for body -->
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+  <!-- Font Awesome → Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --bg: #000;
+      --fg: #fff;
+      --surface: #111;
+      --surface-alt: #1a1a1a;
+      --gap: 2rem;
+      --radius: 8px;
+      --shadow: rgba(255,255,255,0.05);
+      --font-body: 'Open Sans', sans-serif;
+      --font-heading: 'Bahnschrift', 'Segoe UI', sans-serif;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin:0; padding:0; }
+    html { scroll-behavior: smooth; }
+    body { background: var(--bg); color: var(--fg); font-family: var(--font-body); }
+    .container { max-width: 960px; margin: 0 auto; padding: var(--gap); }
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; border-radius: var(--radius); }
+
+    /* Header */
+    header { position: fixed; top:0; width:100%; background: transparent; padding: var(--gap) 0; z-index:10; }
+    .header-inner { display:flex; justify-content:space-between; align-items:center; }
+    .logo { font-family: var(--font-heading); font-size:1.6rem; }
+    .nav-links { display:flex; gap: var(--gap); }
+    .nav-links a { font-size:1rem; opacity:0.8; transition: opacity 0.2s; }
+    .nav-links a:hover { opacity:1; }
+
+    /* Sections */
+    section { padding: calc(var(--gap)*2) 0; }
+    .section-title { display:flex; align-items:center; gap:0.5rem; font-family: var(--font-heading); font-size:1.6rem; margin-bottom:1rem; }
+    .section-subtitle { color: #888; font-size:1rem; margin-bottom:2rem; }
+
+    /* Hero */
+    #home { display:flex; align-items:center; justify-content:center; flex-direction:column; text-align:center; height:100vh; }
+    #home h1 { font-family: var(--font-heading); font-size:3rem; margin-bottom:1rem; }
+    #home p { color:#aaa; font-size:1.1rem; margin-bottom:2rem; }
+    .btn { display:inline-flex; align-items:center; gap:0.5rem; padding:0.75rem 1.5rem; border:1px solid #333; border-radius:var(--radius); font-size:1rem; opacity:0.85; transition: opacity 0.2s, transform 0.2s; }
+    .btn:hover { opacity:1; transform: translateY(-3px); }
+
+    /* Expertise & Projects grid */
+    .grid { display:grid; gap: var(--gap); }
+    .expertise-grid { grid-template-columns: repeat(auto-fit, minmax(180px,1fr)); }
+    .expertise-card { background: var(--surface); padding: var(--gap); border-radius:var(--radius); text-align:center; transition: transform 0.2s, box-shadow 0.2s; }
+    .expertise-card:hover { transform: translateY(-5px); box-shadow:0 4px 20px var(--shadow); }
+    .expertise-icon { font-size:2rem; margin-bottom:0.5rem; }
+    .expertise-title { font-family: var(--font-heading); font-weight:600; margin-bottom:0.5rem; }
+    .expertise-description { color:#aaa; font-size:0.9rem; }
+
+    .projects-grid { grid-template-columns: repeat(auto-fit, minmax(240px,1fr)); }
+    .project-card { background:var(--surface); border-radius:var(--radius); overflow:hidden; transition: transform 0.2s, box-shadow 0.2s; }
+    .project-card:hover { transform: translateY(-5px); box-shadow:0 4px 20px var(--shadow); }
+    .project-image { height:160px; display:flex; align-items:center; justify-content:center; background:#222; }
+    .project-content { padding:var(--gap); }
+    .project-type { font-family:monospace; font-size:0.85rem; color:#bbb; margin-bottom:0.3rem; }
+    .project-title { font-family: var(--font-heading); font-size:1.2rem; margin-bottom:0.5rem; }
+    .project-description { color:#aaa; font-size:0.9rem; }
+
+    /* Skills orbit */
+    .skills-showcase { background: var(--surface); }
+    .skills-orbit { position:relative; width:400px; height:400px; margin:0 auto; }
+    .skill-item { position:absolute; background: var(--surface-alt); padding:0.5rem 1rem; border-radius:var(--radius); font-family:monospace; font-size:0.85rem; display:flex; align-items:center; gap:0.5rem; opacity:0; transition: top 0.8s ease, left 0.8s ease, opacity 0.4s; }
+    .skill-item.visible { opacity:1; }
+    .skill-item:hover { transform: scale(1.1); }
+
+    /* Footer */
+    footer { text-align:center; padding:2rem 0; color:#555; font-size:0.85rem; }
+
+    @media(max-width:768px){
+      #home h1 { font-size:2rem; }
+      .skills-orbit{ width:300px; height:300px; }
+    }
+  </style>
 </head>
 <body>
-    <div class="image-container">
-        <img src="https://lh3.googleusercontent.com/pw/AP1GczOXw3L_dCpZiZaXNksJZjVNXvM5VHz5LfT_fY_CNcUVnhFcbUUbN_mA8YFRyokAdSRtrTsHrAIPVNsEtKpEXPSOMBd6gAh7dzx_cKsHwDtRSTJj2tfv9bbHOppOPzacYw9nvRzUHanmu6uAzi3CE5jU=w1280-h610-s-no-gm?authuser=0" alt="Introduction">
-        <img src="https://lh3.googleusercontent.com/pw/AP1GczOiVJOxTNiTxGUsbHcWE6WOR-_Mf5pgl5AICdU_122cLTwzava4uocKq1a58uxoJtGAEvu5Mdpkm6buYPRCkN2qYWlHTUkbFI-4DrqsUrCDMMSbPmPDMxTuYeJn_jlAcmlC2UInAH7Ap1VM4JwgbASV=w1280-h610-s-no-gm?authuser=0" alt="Introduction 2">
-        <img src="https://lh3.googleusercontent.com/pw/AP1GczNE4dzEAcsaXkJiogThtMQvT7DG__UFfAu6bXEVmut5G2fsh3JJQTlVaY5idwub7chXB35OYtSOSumZKwYKKnEt2rAj6Y39VDRLejiSKiibeW4yfBVwfjB9AM1mEUL1P2GxQBVU3mgW9mIQ7TX00S0b=w1280-h610-s-no-gm?authuser=0" alt="What I do">
-        <img src="https://i.imgur.com/SNnDg04.png" alt="What I've done">
-        <img src="https://i.imgur.com/TWeH15e.png" alt="Contact me">
+<header>
+  <div class="container header-inner">
+    <div class="logo"><i class="fas fa-microchip"></i> SALIK</div>
+    <nav class="nav-links">
+      <a href="#home"><i class="fas fa-home"></i></a>
+      <a href="#expertise"><i class="fas fa-cogs"></i></a>
+      <a href="#projects"><i class="fas fa-briefcase"></i></a>
+      <a href="#skills"><i class="fas fa-code"></i></a>
+      <a href="#contact"><i class="fas fa-envelope"></i></a>
+    </nav>
+  </div>
+</header>
+
+<section id="home">
+  <div class="container">
+    <h1>Salik</h1>
+    <p>An aspiring embedded system engineer and an AI enthusiast.</p>
+    <a href="https://github.com/s-asterisk/RE-AL" target="_blank" class="btn"><i class="fas fa-github"></i> View RE:AL</a>
+  </div>
+</section>
+
+<section id="expertise">
+  <div class="container">
+    <div class="section-title"><i class="fas fa-tools"></i> Expertise</div>
+    <div class="expertise-grid grid">
+      <div class="expertise-card"><div class="expertise-icon"><i class="fas fa-microchip"></i></div><div class="expertise-title">Embedded</div><div class="expertise-description">Firmware & drivers</div></div>
+      <div class="expertise-card"><div class="expertise-icon"><i class="fas fa-robot"></i></div><div class="expertise-title">AI</div><div class="expertise-description">Edge ML & vision</div></div>
+      <div class="expertise-card"><div class="expertise-icon"><i class="fas fa-project-diagram"></i></div><div class="expertise-title">Architecture</div><div class="expertise-description">Optimized systems</div></div>
     </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="container">
+    <div class="section-title"><i class="fas fa-briefcase"></i> Projects</div>
+    <div class="projects-grid grid">
+      <a href="https://github.com/s-asterisk/RE-AL" target="_blank" class="project-card">
+        <div class="project-image"><i class="fas fa-microphone fa-2x"></i></div>
+        <div class="project-content">
+          <div class="project-type">AI</div>
+          <div class="project-title">RE:AL</div>
+          <div class="project-description">Neural singing synthesis framework</div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section id="skills" class="skills-showcase">
+  <div class="container">
+    <div class="section-title"><i class="fas fa-code"></i> Skills</div>
+    <div class="skills-orbit">
+      <div class="skill-item"><i class="fab fa-python"></i> Python</div>
+      <div class="skill-item"><i class="fas fa-code"></i> C++</div>
+      <div class="skill-item"><i class="fas fa-microchip"></i> Embedded</div>
+      <div class="skill-item"><i class="fab fa-linux"></i> Linux</div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="container">
+    <div class="section-title"><i class="fas fa-envelope"></i> Contact</div>
+    <p>Let's collaborate on your next embedded or AI project.</p>
+  </div>
+</section>
+
+<footer>
+  <div class="container">&copy; 2025 Salik</div>
+</footer>
+
+<script>
+  document.addEventListener('DOMContentLoaded', ()=>{
+    const orbit = document.querySelector('.skills-orbit');
+    const items = Array.from(document.querySelectorAll('.skill-item'));
+    const minDist = 60;
+    items.forEach((el,i)=> el.style.transitionDelay = `${i*0.1}s`);
+    function place(){ const r=orbit.getBoundingClientRect(), placed=[];
+      items.forEach(el=>{let x,y,att=0;
+        do{ x=Math.random()*(r.width-el.offsetWidth);
+            y=Math.random()*(r.height-el.offsetHeight);
+            if(++att>200) break;
+        } while(placed.some(p=>Math.hypot(p.x-x,p.y-y)<minDist));
+        placed.push({x,y});
+      });
+      items.forEach((el,i)=>{ el.style.left=`${placed[i].x}px`; el.style.top=`${placed[i].y}px`; el.classList.add('visible'); });
+    }
+    place(); items.forEach(el=> el.addEventListener('mouseenter', place));
+  });
+</script>
 </body>
 </html>
