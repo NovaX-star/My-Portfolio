@@ -4,9 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Salik | Embedded Systems Engineer</title>
-  <!-- Google Font: Open Sans for body -->
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
-  <!-- Font Awesome → Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     :root {
@@ -20,64 +18,189 @@
       --font-body: 'Open Sans', sans-serif;
       --font-heading: 'Bahnschrift', 'Segoe UI', sans-serif;
     }
-    *, *::before, *::after { box-sizing: border-box; margin:0; padding:0; }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
     body { background: var(--bg); color: var(--fg); font-family: var(--font-body); }
     .container { max-width: 960px; margin: 0 auto; padding: var(--gap); }
     a { color: inherit; text-decoration: none; }
     img { display: block; max-width: 100%; border-radius: var(--radius); }
 
-    /* Header */
-    header { position: fixed; top:0; width:100%; background: transparent; padding: var(--gap) 0; z-index:10; }
-    .header-inner { display:flex; justify-content:space-between; align-items:center; }
-    .logo { font-family: var(--font-heading); font-size:1.6rem; }
-    .nav-links { display:flex; gap: var(--gap); }
-    .nav-links a { font-size:1rem; opacity:0.8; transition: opacity 0.2s; }
-    .nav-links a:hover { opacity:1; }
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: transparent;
+      padding: var(--gap) 0;
+      z-index: 10;
+    }
+    .header-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .logo {
+      font-family: var(--font-heading);
+      font-size: 1.6rem;
+    }
+    .nav-links {
+      display: flex;
+      gap: var(--gap);
+    }
+    .nav-links a {
+      font-size: 1rem;
+      opacity: 0.8;
+      transition: opacity 0.2s;
+    }
+    .nav-links a:hover {
+      opacity: 1;
+    }
 
-    /* Sections */
-    section { padding: calc(var(--gap)*2) 0; }
-    .section-title { display:flex; align-items:center; gap:0.5rem; font-family: var(--font-heading); font-size:1.6rem; margin-bottom:1rem; }
-    .section-subtitle { color: #888; font-size:1rem; margin-bottom:2rem; }
+    section {
+      padding: calc(var(--gap) * 2) 0;
+    }
+    .section-title {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: var(--font-heading);
+      font-size: 1.6rem;
+      margin-bottom: 1rem;
+    }
+    .section-subtitle {
+      color: #888;
+      font-size: 1rem;
+      margin-bottom: 2rem;
+    }
 
-    /* Hero */
-    #home { display:flex; align-items:center; justify-content:center; flex-direction:column; text-align:center; height:100vh; }
-    #home h1 { font-family: var(--font-heading); font-size:3rem; margin-bottom:1rem; }
-    #home p { color:#aaa; font-size:1.1rem; margin-bottom:2rem; }
-    .btn { display:inline-flex; align-items:center; gap:0.5rem; padding:0.75rem 1.5rem; border:1px solid #333; border-radius:var(--radius); font-size:1rem; opacity:0.85; transition: opacity 0.2s, transform 0.2s; }
-    .btn:hover { opacity:1; transform: translateY(-3px); }
+    #home {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      text-align: center;
+      height: 100vh;
+    }
+    #home h1 {
+      font-family: var(--font-heading);
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+    #home p {
+      color: #aaa;
+      font-size: 1.1rem;
+      margin-bottom: 2rem;
+    }
 
-    /* Expertise & Projects grid */
-    .grid { display:grid; gap: var(--gap); }
-    .expertise-grid { grid-template-columns: repeat(auto-fit, minmax(180px,1fr)); }
-    .expertise-card { background: var(--surface); padding: var(--gap); border-radius:var(--radius); text-align:center; transition: transform 0.2s, box-shadow 0.2s; }
-    .expertise-card:hover { transform: translateY(-5px); box-shadow:0 4px 20px var(--shadow); }
-    .expertise-icon { font-size:2rem; margin-bottom:0.5rem; }
-    .expertise-title { font-family: var(--font-heading); font-weight:600; margin-bottom:0.5rem; }
-    .expertise-description { color:#aaa; font-size:0.9rem; }
+    .grid {
+      display: grid;
+      gap: var(--gap);
+    }
+    .expertise-grid {
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    }
+    .expertise-card {
+      background: var(--surface);
+      padding: var(--gap);
+      border-radius: var(--radius);
+      text-align: center;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .expertise-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 4px 20px var(--shadow);
+    }
+    .expertise-icon {
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+    }
+    .expertise-title {
+      font-family: var(--font-heading);
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+    .expertise-description {
+      color: #aaa;
+      font-size: 0.9rem;
+    }
 
-    .projects-grid { grid-template-columns: repeat(auto-fit, minmax(240px,1fr)); }
-    .project-card { background:var(--surface); border-radius:var(--radius); overflow:hidden; transition: transform 0.2s, box-shadow 0.2s; }
-    .project-card:hover { transform: translateY(-5px); box-shadow:0 4px 20px var(--shadow); }
-    .project-image { height:160px; display:flex; align-items:center; justify-content:center; background:#222; }
-    .project-content { padding:var(--gap); }
-    .project-type { font-family:monospace; font-size:0.85rem; color:#bbb; margin-bottom:0.3rem; }
-    .project-title { font-family: var(--font-heading); font-size:1.2rem; margin-bottom:0.5rem; }
-    .project-description { color:#aaa; font-size:0.9rem; }
+    .projects-grid {
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    }
+    .project-card {
+      background: var(--surface);
+      border-radius: var(--radius);
+      overflow: hidden;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .project-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 4px 20px var(--shadow);
+    }
+    .project-image {
+      height: 160px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #222;
+    }
+    .project-content {
+      padding: var(--gap);
+    }
+    .project-type {
+      font-family: monospace;
+      font-size: 0.85rem;
+      color: #bbb;
+      margin-bottom: 0.3rem;
+    }
+    .project-title {
+      font-family: var(--font-heading);
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+    }
+    .project-description {
+      color: #aaa;
+      font-size: 0.9rem;
+    }
 
-    /* Skills orbit */
-    .skills-showcase { background: var(--surface); }
-    .skills-orbit { position:relative; width:400px; height:400px; margin:0 auto; }
-    .skill-item { position:absolute; background: var(--surface-alt); padding:0.5rem 1rem; border-radius:var(--radius); font-family:monospace; font-size:0.85rem; display:flex; align-items:center; gap:0.5rem; opacity:0; transition: top 0.8s ease, left 0.8s ease, opacity 0.4s; }
-    .skill-item.visible { opacity:1; }
-    .skill-item:hover { transform: scale(1.1); }
+    .skills-showcase {
+      background: var(--surface);
+    }
+    .skills-orbit {
+      position: relative;
+      width: 400px;
+      height: 400px;
+      margin: 0 auto;
+    }
+    .skill-item {
+      position: absolute;
+      background: var(--surface-alt);
+      padding: 0.5rem 1rem;
+      border-radius: var(--radius);
+      font-family: monospace;
+      font-size: 0.85rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      opacity: 0;
+      transition: top 0.8s ease, left 0.8s ease, opacity 0.4s;
+    }
+    .skill-item.visible {
+      opacity: 1;
+    }
+    .skill-item:hover {
+      transform: scale(1.1);
+    }
 
-    /* Footer */
-    footer { text-align:center; padding:2rem 0; color:#555; font-size:0.85rem; }
+    footer {
+      text-align: center;
+      padding: 2rem 0;
+      color: #555;
+      font-size: 0.85rem;
+    }
 
-    @media(max-width:768px){
-      #home h1 { font-size:2rem; }
-      .skills-orbit{ width:300px; height:300px; }
+    @media(max-width: 768px) {
+      #home h1 { font-size: 2rem; }
+      .skills-orbit { width: 300px; height: 300px; }
     }
   </style>
 </head>
@@ -99,7 +222,6 @@
   <div class="container">
     <h1>Salik</h1>
     <p>An aspiring embedded system engineer and an AI enthusiast.</p>
-    <a href="https://github.com/s-asterisk/RE-AL" target="_blank" class="btn"><i class="fas fa-github"></i> View RE:AL</a>
   </div>
 </section>
 
@@ -154,22 +276,35 @@
 </footer>
 
 <script>
-  document.addEventListener('DOMContentLoaded', ()=>{
+  document.addEventListener('DOMContentLoaded', () => {
     const orbit = document.querySelector('.skills-orbit');
     const items = Array.from(document.querySelectorAll('.skill-item'));
     const minDist = 60;
-    items.forEach((el,i)=> el.style.transitionDelay = `${i*0.1}s`);
-    function place(){ const r=orbit.getBoundingClientRect(), placed=[];
-      items.forEach(el=>{let x,y,att=0;
-        do{ x=Math.random()*(r.width-el.offsetWidth);
-            y=Math.random()*(r.height-el.offsetHeight);
-            if(++att>200) break;
-        } while(placed.some(p=>Math.hypot(p.x-x,p.y-y)<minDist));
-        placed.push({x,y});
+    items.forEach((el, i) => el.style.transitionDelay = `${i * 0.1}s`);
+
+    function place() {
+      const rect = orbit.getBoundingClientRect();
+      const placed = [];
+
+      items.forEach(el => {
+        let x, y, attempts = 0;
+        do {
+          x = Math.random() * (rect.width - el.offsetWidth);
+          y = Math.random() * (rect.height - el.offsetHeight);
+          attempts++;
+        } while (placed.some(p => Math.hypot(p.x - x, p.y - y) < minDist) && attempts < 200);
+        placed.push({ x, y });
       });
-      items.forEach((el,i)=>{ el.style.left=`${placed[i].x}px`; el.style.top=`${placed[i].y}px`; el.classList.add('visible'); });
+
+      items.forEach((el, i) => {
+        el.style.left = `${placed[i].x}px`;
+        el.style.top = `${placed[i].y}px`;
+        el.classList.add('visible');
+      });
     }
-    place(); items.forEach(el=> el.addEventListener('mouseenter', place));
+
+    place();
+    items.forEach(el => el.addEventListener('mouseenter', place));
   });
 </script>
 </body>
